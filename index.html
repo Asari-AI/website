@@ -12,8 +12,9 @@
   </head>
 
   <body>
+    <div id="canvas-container"></div>
     <header>
-      <nav class="navbar navbar-expand-md navbar-light bg-white">
+      <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="#">
           <span class="logo-text">ASARI AI</span>
         </a>
@@ -57,5 +58,90 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
+      // Create the canvas element
+      const canvas = document.createElement("canvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      document.body.appendChild(canvas);
+
+      // Get the canvas context
+      const ctx = canvas.getContext("2d");
+
+      // Array to store the stars
+      let stars = [];
+
+      // Function to generate random number within a range
+      function getRandomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      // Function to generate a random star
+      function generateStar() {
+        const x = getRandomNumber(0, canvas.width);
+        const y = getRandomNumber(0, canvas.height);
+        const radius = getRandomNumber(0.5, 2);
+
+        return { x, y, radius };
+      }
+
+      // Function to create initial stars
+      function createStars() {
+        for (let i = 0; i < 200; i++) {
+          stars.push(generateStar());
+        }
+      }
+
+      // Function to animate the stars
+      function animateStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, "#000000");
+        gradient.addColorStop(1, "#051033");
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw stars
+        ctx.fillStyle = "#ffffff";
+        stars.forEach((star) => {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fill();
+        });
+
+        // Update star positions
+        stars = stars.map((star) => {
+          star.x += getRandomNumber(-0.5, 0.5);
+          star.y += getRandomNumber(-0.5, 0.5);
+
+          if (
+            star.x < 0 ||
+            star.x > canvas.width ||
+            star.y < 0 ||
+            star.y > canvas.height
+          ) {
+            // Reset star position if it goes off-screen
+            star.x = getRandomNumber(0, canvas.width);
+            star.y = getRandomNumber(0, canvas.height);
+          }
+
+          return star;
+        });
+
+        // Request animation frame
+        requestAnimationFrame(animateStars);
+      }
+
+      // Initialize the animation
+      createStars();
+      animateStars();
+
+      const canvasContainer = document.getElementById("canvas-container");
+      canvasContainer.appendChild(canvas);
+    </script>
   </body>
 </html>
