@@ -1,0 +1,55 @@
+@font-face {
+    font-family: AvenirNextLTPro;
+    src: url('../webfonts/avenir_next_lt_pro_regular-webfont.eot');
+    src: url('../webfonts/avenir_next_lt_pro_regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../webfonts/avenir_next_lt_pro_regular-webfont.woff2') format('woff2'),
+        url('../webfonts/avenir_next_lt_pro_regular-webfont.woff') format('woff'),
+        url('../webfonts/avenir_next_lt_pro_regular-webfont.svg#avenir_next_lt_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Global styles */
+body {
+    font-family: AvenirNextLTPro, Arial, Roboto, -apple-system, system-ui, Segoe UI, Ubuntu, Cantarell, Noto Sans, sans-serif, Oxygen, Open Sans, Helvetica Neue, Icons16;
+    font-size: 0.8em;
+    line-height: 1.5em; 
+    letter-spacing: 0.1em;
+}
+
+header {
+    padding: 10px;
+}
+
+.navbar-brand {
+    
+}
+
+.logo-text {
+    font-size: 1em;
+    font-weight: 400;
+    color: #444;
+}
+
+main {
+    padding: 50px;
+}
+
+h1,
+h2 {
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+section p {
+    font-size: 18px;
+}
+
+ul {
+    text-align: left;
+}
